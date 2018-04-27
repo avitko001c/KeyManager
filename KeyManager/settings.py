@@ -17,7 +17,7 @@ DEBUG = True
 DATABASES = {
 	"default": {
 		"ENGINE": "django.db.backends.sqlite3",
-		"NAME": "dev.db",
+		"NAME": "KeyManager.db",
 	}
 }
 
@@ -107,7 +107,7 @@ TEMPLATES = [
 				"django.template.context_processors.request",
 				"django.contrib.messages.context_processors.messages",
 				"account.context_processors.account",
-				"keymanage.context_processors.settings"
+				"KeyManager.context_processors.settings"
 			],
 		},
 	},
@@ -124,10 +124,10 @@ MIDDLEWARE = [
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "keymanage.urls"
+ROOT_URLCONF = "KeyManager.urls"
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = "keymanage.wsgi.application"
+WSGI_APPLICATION = "KeyManager.wsgi.application"
 
 INSTALLED_APPS = [
 	"django.contrib.admin",
@@ -148,8 +148,8 @@ INSTALLED_APPS = [
 	"pinax.webanalytics",
 
 	# project
-	"keymanage",
-	"keymanage-dbsettings",
+	"KeyManager",
+	"KeyManager-dbsettings",
 	"djrichtextfield",
 ]
 

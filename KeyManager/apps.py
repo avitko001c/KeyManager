@@ -5,7 +5,7 @@ from django.apps import AppConfig as BaseAppConfig
 
 class AppConfig(BaseAppConfig):
 
-    name = "keymanage"
+    name = "KeyManager"
 
     def ready(self):
-        import_module("keymanage.receivers")
+        import_module("KeyManager.receivers")

@@ -13,8 +13,7 @@ urlpatterns = [
 	url(r"^admin/", admin.site.urls),
 	url(r"^account/", include("account.urls")),
 	url(r"^profile/", update_profile, name="Profile"),
-	url(r"^dbsettings/", include("keymanage-dbsettings.urls")),
-	url('^init.js$', include("djrichtextfield.urls")),
+	url(r"^dbsettings/", include("KeyManager-dbsettings.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

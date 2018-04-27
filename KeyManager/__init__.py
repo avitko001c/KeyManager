@@ -7,4 +7,4 @@ comprehensive account management functionality. It is a foundation
 suitable for most sites that have user accounts.
 """
 
-default_app_config = "keymanage.apps.AppConfig"
+default_app_config = "KeyManager.apps.AppConfig"
