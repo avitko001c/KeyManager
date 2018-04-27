@@ -1,4 +1,4 @@
-# keymanage
+# KeyManager
 
 ## Getting Started
 
