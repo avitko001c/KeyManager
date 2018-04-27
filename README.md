@@ -2,15 +2,22 @@
 
 ## Getting Started
 
-Make sure you are using a virtual environment of some sort (e.g. `virtualenv` or
-`pyenv`).
-
-```
-npm install
-pip install -r requirements.txt
-./manage.py migrate
-./manage.py loaddata sites
-npm run dev
-```
+npm run setup
+npm run start
 
 Browse to http://localhost:3000/
+
+## Clean Everything and Start Over
+
+npm run startover
+npm run setup
+npm run start
+
+## Re-Run After Setup is Completed
+
+npm run start
+
+## Run migration on the KeyManager App if changes are made
+
+npm run migrate
+npm run start

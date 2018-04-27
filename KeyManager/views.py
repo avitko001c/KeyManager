@@ -4,7 +4,6 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-from djrichtextfield.models import RichTextField
 from .forms import UserForm, ProfileForm
 
 @login_required
