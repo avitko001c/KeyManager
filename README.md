@@ -13,11 +13,10 @@ npm run startover
 npm run setup
 npm run start
 
-## Re-Run After Setup is Completed
-
-npm run start
-
 ## Run migration on the KeyManager App if changes are made
 
 npm run migrate
+
+## Re-Run After Setup is Completed
+
 npm run start

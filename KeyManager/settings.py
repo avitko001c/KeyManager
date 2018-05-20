@@ -3,9 +3,21 @@ import os
 from django.apps import apps
 from django.conf import settings
 
+INTERNAL_IPS = [
+	"127.0.0.1",
+	"localhost",
+]
 
 USE_SITES = True
 USE_CACHE = True
+
+CACHES = {
+	'default': {
+		'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+		'LOCATION': '/var/tmp/django_cache',
+	}
+}
+
 VALUE_LENGTH = 255
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -14,10 +26,16 @@ BASE_DIR = PACKAGE_ROOT
 
 DEBUG = True
 
+GRAPPELLI_INDEX_DASHBOARD = 'Sparta.dashboard.CustomIndexDashboard'
+
 DATABASES = {
-	"default": {
-		"ENGINE": "django.db.backends.sqlite3",
-		"NAME": "KeyManager.db",
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': 'keymanager',
+		'USER': 'andrew.vitko',
+		'PASSWORD': 'Lisa07!@',
+		'HOST': 'localhost',
+		'PORT': '',
 	}
 }
 
@@ -83,6 +101,7 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATICFILES_FINDERS = [
 	"django.contrib.staticfiles.finders.FileSystemFinder",
 	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+	"django_assets.finders.AssetsFinder",
 ]
 
 # Make this unique, and don't share it with anybody.
@@ -98,6 +117,7 @@ TEMPLATES = [
 		"OPTIONS": {
 			"debug": DEBUG,
 			"context_processors": [
+				"django.template.context_processors.request",
 				"django.contrib.auth.context_processors.auth",
 				"django.template.context_processors.debug",
 				"django.template.context_processors.i18n",
@@ -106,6 +126,7 @@ TEMPLATES = [
 				"django.template.context_processors.tz",
 				"django.template.context_processors.request",
 				"django.contrib.messages.context_processors.messages",
+				"pinax_theme_bootstrap.context_processors.theme",
 				"account.context_processors.account",
 				"KeyManager.context_processors.settings"
 			],
@@ -120,6 +141,7 @@ MIDDLEWARE = [
 	"django.middleware.common.CommonMiddleware",
 	"django.middleware.csrf.CsrfViewMiddleware",
 	"django.contrib.auth.middleware.AuthenticationMiddleware",
+	"debug_toolbar.middleware.DebugToolbarMiddleware",
 	"django.contrib.messages.middleware.MessageMiddleware",
 	"django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -130,6 +152,7 @@ ROOT_URLCONF = "KeyManager.urls"
 WSGI_APPLICATION = "KeyManager.wsgi.application"
 
 INSTALLED_APPS = [
+	"django_assets",
 	"django.contrib.admin",
 	"django.contrib.auth",
 	"django.contrib.contenttypes",
@@ -137,20 +160,26 @@ INSTALLED_APPS = [
 	"django.contrib.sessions",
 	"django.contrib.sites",
 	"django.contrib.staticfiles",
+	"django.contrib.postgres",
+	"debug_toolbar",
+	#"grappelli.dashboard",
+	#"grappelli",
 
 	# templates
+	"pinax_theme_bootstrap",
 	"bootstrapform",
 	"pinax.templates",
 
 	# external
-	"account",
 	"pinax.eventlog",
 	"pinax.webanalytics",
+	"account",
+	"aws_manager",
 
 	# project
+	"simplesshkey",
 	"KeyManager",
-	"KeyManager-dbsettings",
-	"djrichtextfield",
+	"dbsettings",
 ]
 
 ADMIN_URL = "admin:index"
@@ -202,3 +231,9 @@ ACCOUNT_USE_AUTH_AUTHENTICATE = True
 AUTHENTICATION_BACKENDS = [
 	"account.auth_backends.UsernameAuthenticationBackend",
 ]
+
+SSHKEY_ALLOW_EDIT = True
+
+SSHKEY_AUTHORIZED_KEYS_OPTIONS = "" 
+
+SSHKEY_DEFAULT_HASH = "md5"

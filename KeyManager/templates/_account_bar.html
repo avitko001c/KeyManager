@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load staticfiles %}
 {% load account_tags %}
 
 
@@ -13,6 +14,22 @@
         <li class="nav-item">
             <a class="nav-link" id="account_logout" href="{% url 'account_logout' %}"><i class="fa fa-power-off"></i> {% trans "Log out" %}</a>
         </li>
+<!--
+                       <div class="sidebar-scroll">
+                                <div class="user-account">
+                                        <img src="{% static 'assets/img/user.png' %}" class="img-responsive img-circle user-photo" alt="User Profile Picture">
+                                        <div class="dropdown">
+                                                <a href="#" class="dropdown-toggle user-name" data-toggle="dropdown">Hello, <strong></strong> <i class="fa fa-caret-down"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-right account">
+                                                        <li><a href="#">My Profile</a></li>
+                                                        <li><a href="#">Messages</a></li>
+                                                        <li><a href="#">Settings</a></li>
+                                                        <li class="divider"></li>
+                                                        <li><a href="#">Logout</a></li>
+                                                </ul>
+                                 </div>
+                        </div>
+-->
     {% else %}
         <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">{% trans "Log in" %}</a></li>
         {% if ACCOUNT_OPEN_SIGNUP %}

@@ -1,2 +1,5 @@
--r requirements-zero.txt
--r requirements-account.txt
+django-user-accounts==2.0.3
+pinax-eventlog==2.0.3
+pinax-webanalytics==4.0.2
+Django==2.0
+pinax-templates==2.0.1

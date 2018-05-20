@@ -1,6 +1,8 @@
 body.account {
     &.account-settings nav.settings-nav  .account-settings,
     &.account-password nav.settings-nav .account-password,
+    &.account-profile nav.settings-nav .account-profile,
+    &.account-sshkeys nav.settings-nav .account-sshkeys,
     &.account-delete nav.settings-nav .account-delete {
         color: $nav-pills-link-active-color;
         background-color: $nav-pills-link-active-bg;
