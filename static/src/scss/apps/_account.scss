@@ -3,6 +3,7 @@ body.account {
     &.account-password nav.settings-nav .account-password,
     &.account-profile nav.settings-nav .account-profile,
     &.account-sshkeys nav.settings-nav .account-sshkeys,
+    &.account-puppet nav.settings-nav .account-puppet,
     &.account-delete nav.settings-nav .account-delete {
         color: $nav-pills-link-active-color;
         background-color: $nav-pills-link-active-bg;

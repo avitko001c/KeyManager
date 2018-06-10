@@ -3,18 +3,19 @@
 {% load staticfiles %}
 {% load pinax_webanalytics_tags %}
 {% load i18n %}
+{% load bootstrap4 %}
 
 
 {% block styles %}
-    <link href="{% static "css/app.css" %}" rel="stylesheet" />
+    <link href="{% static "css/app.css" %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static "sparta-theme/jquery-ui/jquery-ui.css" %}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{% static "sparta-theme/jquery-ui.theme.css" %}" rel="stylesheet" type="text/css" media="all"/>
 {% endblock %}
-
 
 {% block extra_head_base %}
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <script defer src="{% static "fontawesome/svg-with-js/js/fontawesome-all.js" %}"></script>
     {% block extra_head %}{% endblock %}
 {% endblock %}
-
 
 {% block topbar_base %}
 <header>
@@ -50,7 +51,9 @@
 
 
 {% block scripts %}
-    <script src="{% static "js/site.js" %}"></script>
+    <script src="{% static "sparta-theme/jquery-ui.js" %}" type="text/javascript"></script>
+    <script src="{% static "sparta-theme/jquery-ui.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/site.js" %}" type="text/javascript"></script>
 {% endblock %}
 
 {% block extra_body_base %}

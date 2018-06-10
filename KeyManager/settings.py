@@ -1,5 +1,6 @@
-import os
+# -*- coding: utf-8 -*-
 
+import os
 from django.apps import apps
 from django.conf import settings
 
@@ -25,8 +26,6 @@ PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 BASE_DIR = PACKAGE_ROOT
 
 DEBUG = True
-
-GRAPPELLI_INDEX_DASHBOARD = 'Sparta.dashboard.CustomIndexDashboard'
 
 DATABASES = {
 	'default': {
@@ -101,6 +100,7 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesSto
 STATICFILES_FINDERS = [
 	"django.contrib.staticfiles.finders.FileSystemFinder",
 	"django.contrib.staticfiles.finders.AppDirectoriesFinder",
+	"djangobower.finders.BowerFinder",
 	"django_assets.finders.AssetsFinder",
 ]
 
@@ -109,12 +109,13 @@ SECRET_KEY = "lhiss+z7-wcksc%bavg_f9gvko-gnlv_$m-!woax_kv_4he*_u"
 
 TEMPLATES = [
 	{
-		"BACKEND": "django.template.backends.django.DjangoTemplates",
+		"BACKEND": "djinga.backends.djinga.DjingaTemplates",
 		"DIRS": [
 			os.path.join(PACKAGE_ROOT, "templates"),
 		],
 		"APP_DIRS": True,
 		"OPTIONS": {
+			"load_from": ("KeyManager.templatetags.djingatags",),
 			"debug": DEBUG,
 			"context_processors": [
 				"django.template.context_processors.request",
@@ -126,7 +127,6 @@ TEMPLATES = [
 				"django.template.context_processors.tz",
 				"django.template.context_processors.request",
 				"django.contrib.messages.context_processors.messages",
-				"pinax_theme_bootstrap.context_processors.theme",
 				"account.context_processors.account",
 				"KeyManager.context_processors.settings"
 			],
@@ -151,36 +151,61 @@ ROOT_URLCONF = "KeyManager.urls"
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = "KeyManager.wsgi.application"
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
 INSTALLED_APPS = [
+	"crispy_forms",
+	"djangobower",
 	"django_assets",
-	"django.contrib.admin",
+	"django_extensions",
+	"django_tables2",
 	"django.contrib.auth",
 	"django.contrib.contenttypes",
+	"grappelli",
+	"django.contrib.admin",
 	"django.contrib.messages",
 	"django.contrib.sessions",
 	"django.contrib.sites",
+	"django.contrib.sitemaps",
 	"django.contrib.staticfiles",
 	"django.contrib.postgres",
+
+	# DEBUG Apps
 	"debug_toolbar",
-	#"grappelli.dashboard",
-	#"grappelli",
+
+	# REST API
+	"rest_framework",
+	"rest_framework.authtoken",
 
 	# templates
 	"pinax_theme_bootstrap",
+	"bootstrap4",
 	"bootstrapform",
-	"pinax.templates",
 
 	# external
-	"pinax.eventlog",
 	"pinax.webanalytics",
 	"account",
-	"aws_manager",
+	"documents",
 
 	# project
-	"simplesshkey",
+	"eventlog",
 	"KeyManager",
 	"dbsettings",
 ]
+
+BOWER_INSTALLED_APPS = [
+	'bootstrap',
+	'fontawesome',
+]
+
+BOWER_COMPONENTS_ROOT = os.path.join(PACKAGE_ROOT, "components")
 
 ADMIN_URL = "admin:index"
 CONTACT_EMAIL = "support@example.com"
@@ -234,6 +259,10 @@ AUTHENTICATION_BACKENDS = [
 
 SSHKEY_ALLOW_EDIT = True
 
-SSHKEY_AUTHORIZED_KEYS_OPTIONS = "" 
+SSHKEY_AUTHORIZED_KEYS_OPTIONS = ""
 
 SSHKEY_DEFAULT_HASH = "md5"
+
+DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap-responsive.html'
+
+DBSETTINGS_USE_SITES = False

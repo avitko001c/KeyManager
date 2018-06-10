@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django import forms
 from django.contrib.postgres.fields import ArrayField
 from django.forms import SelectMultiple
@@ -7,11 +9,9 @@ from django import forms
 
 from KeyManager.widgets import ChosenSelect, ChosenSelectMultiple, ChosenGroupSelect
 
-__all__ = [
-	'ChosenFieldMixin', 'ChosenChoiceField', 'ChosenMultipleChoiceField',
+__all__ = [ 'ChosenFieldMixin', 'ChosenChoiceField', 'ChosenMultipleChoiceField',
 	'ChosenModelChoiceField', 'ChosenModelMultipleChoiceField',
-	'ChosenGroupChoiceField', 'ArraySelectMultiple', 'ChoiceArrayField'
-]
+	'ChosenGroupChoiceField', 'ArraySelectMultiple', 'ChoiceArrayField' ]
 
 
 class ChosenFieldMixin(object):
