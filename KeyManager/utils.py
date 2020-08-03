@@ -81,22 +81,19 @@ def normalize_user_key(modeladmin, request, queryset):
 def wrap(text, width, wrap_end=None):
 	n = 0
 	t = ''
-	if wrap_end is None:
-		while n < len(text):
-			m = n + width
+	while n < len(text):
+		m = n + width
+		if wrap_end is None:
 			t += text[n:m]
 			if len(text) <= m:
 				return t
 			t += '\n'
-			n = m
-	else:
-		while n < len(text):
-			m = n + width
+		else:
 			if len(text) <= m:
 				return t + text[n:m]
 			m -= len(wrap_end)
 			t += text[n:m] + wrap_end + '\n'
-			n = m
+		n = m
 	return t
 
 
@@ -188,12 +185,11 @@ class PublicKey(object):
 		pkcs1_seq.setComponentByPosition(0, univ.Integer(n))
 		pkcs1_seq.setComponentByPosition(1, univ.Integer(e))
 		der = der_encoder.encode(pkcs1_seq)
-		out = (
+		return (
 			'-----BEGIN RSA PUBLIC KEY-----\n' +
 			wrap(base64.b64encode(der).decode('ascii'), 64) + '\n' +
 			'-----END RSA PUBLIC KEY-----'
 		)
-		return out
 
 def pubkey_parse_openssh(text):
 	fields = text.split(None, 2)

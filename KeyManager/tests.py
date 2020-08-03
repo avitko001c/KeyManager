@@ -63,10 +63,8 @@ def ssh_fingerprint(pubkey_path, hash=None):
     # Legacy mode ensures the fingeprint is always a non-prefixed MD5 hash of the
     # key, regardless of which version of OpenSSH is installed.
     legacy = hash == 'legacy'
-    if legacy and SSH_VERSION < ('6', '8'):
-        hash = None
-    elif legacy:
-        hash = 'md5'
+    if legacy:
+        hash = None if SSH_VERSION < ('6', '8') else 'md5'
     if hash is not None:
         cmd.extend(['-E', hash])
 

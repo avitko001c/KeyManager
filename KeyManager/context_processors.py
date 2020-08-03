@@ -15,7 +15,7 @@ def package_names(names):
             apps.append(x.replace(".", "-"))
         if x == "account":
             apps.append("django-user-accounts")
-        if x == "mailer":
+        elif x == "mailer":
             apps.append("django-mailer")
     return apps
 

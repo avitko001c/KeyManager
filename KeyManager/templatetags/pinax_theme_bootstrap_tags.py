@@ -22,11 +22,7 @@ def get_message_tags(message):
 		# in Bootstrap 3
 		level_tag = "danger"
 
-	if level_tag:
-		alert_level_tag = "alert-{tag}".format(tag=level_tag)
-	else:
-		alert_level_tag = None
-
+	alert_level_tag = "alert-{tag}".format(tag=level_tag) if level_tag else None
 	extra_tags = force_text(message.extra_tags, strings_only=True)
 
 	if extra_tags and alert_level_tag:
