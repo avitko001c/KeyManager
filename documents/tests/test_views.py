@@ -41,8 +41,8 @@ class TestFolders(BaseTest):
         """
         Ensure GET fails if "p" querystring is invalid.
         """
-        querystring_data = {"p": 555}
         with self.login(self.user):
+            querystring_data = {"p": 555}
             response = self.get(self.create_urlname, data=querystring_data)
             self.response_404(response)
 
@@ -51,9 +51,9 @@ class TestFolders(BaseTest):
         """
         Ensure POST creates folder without a parent.
         """
-        folder_name = "Spindle"
-        post_args = {"name": folder_name}
         with self.login(self.user):
+            folder_name = "Spindle"
+            post_args = {"name": folder_name}
             response = self.post(self.create_urlname, data=post_args, follow=True)
             self.response_200(response)
             created = self.get_context("object")
@@ -82,9 +82,9 @@ class TestFolders(BaseTest):
         """
         Ensure POST does not creates folder with invalid parent.
         """
-        folder_name = "Spindle"
-        post_args = {"name": folder_name, "parent": 555}
         with self.login(self.user):
+            folder_name = "Spindle"
+            post_args = {"name": folder_name, "parent": 555}
             response = self.post(self.create_urlname, data=post_args, follow=True)
             self.response_200(response)
             self.assertFalse("object" in self.last_response.context)
@@ -96,8 +96,8 @@ class TestFolders(BaseTest):
         """
         folder_name = "Spindle"
         Folder.objects.create(name=folder_name, author=self.user, modified_by=self.user)
-        post_args = {"name": folder_name}
         with self.login(self.user):
+            post_args = {"name": folder_name}
             response = self.post(self.create_urlname, data=post_args, follow=True)
             self.response_200(response)
             self.assertTrue("{} already exists.".format(folder_name) in str(response.context["form"].errors))
@@ -260,8 +260,8 @@ class TestDocuments(BaseTest):
         """
         Ensure GET fails if "f" querystring is invalid.
         """
-        querystring_data = {"f": 555}
         with self.login(self.user):
+            querystring_data = {"f": 555}
             response = self.get(self.create_urlname, data=querystring_data)
             self.response_404(response)
 
@@ -369,8 +369,8 @@ class TestDocuments(BaseTest):
         """
         Ensure we get error trying to delete an invalid Document.
         """
-        doc_pk = 555
         with self.login(self.user):
+            doc_pk = 555
             response = self.post("documents_document_delete", pk=doc_pk, follow=True)
             self.response_404(response)
 

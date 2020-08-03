@@ -66,9 +66,8 @@ class AbstractUserKey(models.Model):
 		self.key = pubkey.format_openssh()
 		self.keytype = pubkey.keytype()
 		self.fingerprint = pubkey.fingerprint()
-		if not self.name:
-			if pubkey.comment:
-				self.name = pubkey.comment
+		if not self.name and pubkey.comment:
+			self.name = pubkey.comment
 
 	def export(self, format='RFC4716'):
 		pubkey = pubkey_parse(self.key)

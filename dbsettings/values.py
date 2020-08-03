@@ -35,11 +35,7 @@ class Value(object):
         self.choices = choices or []
         self.required = required
         self.widget = widget
-        if default is None:
-            self.default = self.unitialized_value
-        else:
-            self.default = default
-
+        self.default = self.unitialized_value if default is None else default
         self.creation_counter = Value.creation_counter
         Value.creation_counter += 1
 
@@ -115,9 +111,7 @@ class BooleanValue(Value):
             forms.BooleanField.__init__(self, *args, **kwargs)
 
     def to_python(self, value):
-        if value in (True, 't', 'True'):
-            return True
-        return False
+        return value in (True, 't', 'True')
 
     to_editor = to_python
 

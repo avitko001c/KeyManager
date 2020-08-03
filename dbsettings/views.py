@@ -44,10 +44,7 @@ def app_settings(request, app_label, template='dbsettings/app_settings.html'):
                     loading.set_setting_value(*args)
 
                     # Give user feedback as to which settings were changed
-                    if setting.class_name:
-                        location = setting.class_name
-                    else:
-                        location = setting.module_name
+                    location = setting.class_name if setting.class_name else setting.module_name
                     update_msg = (_('Updated %(desc)s on %(location)s') %
                                   {'desc': six.text_type(setting.description),
                                    'location': location})

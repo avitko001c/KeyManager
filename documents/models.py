@@ -74,7 +74,7 @@ class Folder(models.Model):
         """
         Return size of this folder.
         """
-        return sum([m.size for m in self.members(direct=False) if m.kind == "document"])
+        return sum(m.size for m in self.members(direct=False) if m.kind == "document")
 
     def breadcrumbs(self):
         """

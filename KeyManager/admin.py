@@ -44,10 +44,9 @@ class UserKeyInLine(admin.TabularInline):
 		one extra form to use to add one otherwise
 		only show the defined keys and use the add
 		feature to create more'''
-		extra = 1
 		if obj:
 			return 0
-		return extra
+		return 1
 
 class UserKeyAdmin(admin.ModelAdmin):
 	list_display = [
